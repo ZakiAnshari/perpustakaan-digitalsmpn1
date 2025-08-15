@@ -145,7 +145,7 @@ class UserController extends Controller
         $paginate = $request->input('itemsPerPage', 5); // default 5
 
         // Query awal anggota: hanya role_id 2
-        $query = User::where('role_id', 2);
+        $query = User::where('role_id', 3);
 
         // Filter pencarian berdasarkan nama atau NISN jika tersedia
         if (!empty($name)) {

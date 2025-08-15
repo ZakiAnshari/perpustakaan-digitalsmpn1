@@ -47,7 +47,7 @@
                                     <i class="bi bi-book-fill text-primary" style="font-size: 3rem;"></i>
                                     <span class="badge bg-label-primary rounded-pill"
                                         style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                        5
+                                        {{ $bookCount }}
                                     </span>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                     <i class="bi bi-person-workspace text-primary" style="font-size: 3rem;"></i>
                                     <span class="badge bg-label-primary rounded-pill"
                                         style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                        5
+                                        {{ $pustakawanCount }}
                                     </span>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                     <i class="bi bi-people-fill text-primary" style="font-size: 3rem;"></i>
                                     <span class="badge bg-label-primary rounded-pill"
                                         style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                        5
+                                        {{ $userCount }}
                                     </span>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                     <i class="bi bi-tablet-landscape-fill text-primary" style="font-size: 3rem;"></i>
                                     <span class="badge bg-label-primary rounded-pill"
                                         style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                        5
+                                        {{ $ebookCount }}
                                     </span>
                                 </div>
                             </div>

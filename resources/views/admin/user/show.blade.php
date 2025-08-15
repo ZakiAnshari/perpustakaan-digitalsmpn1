@@ -28,14 +28,16 @@
                             <div class="card h-100">
                                 <div class="card-body position-relative">
                                     <div class="position-absolute end-0 top-0 p-3">
-                                        <span class="badge bg-primary">{{ Auth::user()->role->name }}</span>
+                                        <span class="badge bg-primary">{{ $users->role->name }}</span>
                                     </div>
+
                                     <div class="text-center mt-3">
                                         <div class="chat-avatar d-inline-flex mx-auto mb-3">
-                                            <img src="{{ asset('backend/assets/img/avatars/' . (Auth::user()->jenis_kelamin == 'Perempuan' ? '6.png' : '1.png')) }}"
+                                            <img src="{{ asset('backend/assets/img/avatars/' . (Auth::user()->jenis_kelamin === 'Perempuan' ? '6.png' : '1.png')) }}"
                                                 alt="user-image" class="user-avatar img-fluid"
-                                                style="width: 150%; height: 150px; object-fit: cover;border-radius: 11px;">
+                                                style="width: 150px; height: 150px; object-fit: cover; border-radius: 11px;">
                                         </div>
+
 
                                         <h5 class="mb-1">{{ $users->name }}</h5>
                                         <hr class="my-3">

@@ -80,10 +80,10 @@
 
         <!-- Tabel Data -->
         <div class="table-responsive text-nowrap">
-            <table class="table table-bordered align-middle text-center">
-                <thead class="table-light">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <th style="width: 5px;">No</th>
+                        <th>No</th>
                         <th>Nama Anggota</th>
                         <th>Buku</th>
                         <th>Tanggal Pinjam</th>
@@ -93,51 +93,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Agus Pratama</td>
-                        <td>Belajar Laravel 11</td>
-                        <td>01-08-2025</td>
-                        <td>15-08-2025</td>
-                        <td>14-08-2025</td>
-                        <td><span>Dikembalikan</span></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Siti Aminah</td>
-                        <td>PHP untuk Pemula</td>
-                        <td>02-08-2025</td>
-                        <td>16-08-2025</td>
-                        <td>-</td>
-                        <td><span>Dipinjam</span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Rudi Hartono</td>
-                        <td>Algoritma dan Struktur Data</td>
-                        <td>03-08-2025</td>
-                        <td>17-08-2025</td>
-                        <td>16-08-2025</td>
-                        <td><span>Dikembalikan</span></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Lina Marlina</td>
-                        <td>Desain Web Modern</td>
-                        <td>04-08-2025</td>
-                        <td>18-08-2025</td>
-                        <td>-</td>
-                        <td><span>Dipinjam</span></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Andi Wijaya</td>
-                        <td>Basis Data MySQL</td>
-                        <td>05-08-2025</td>
-                        <td>19-08-2025</td>
-                        <td>18-08-2025</td>
-                        <td><span>Dikembalikan</span></td>
-                    </tr>
+                    @php $no = 1; @endphp
+                    @foreach ($peminjaman as $item)
+                        <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $item->nama_anggota }}</td>
+                            <td>{{ $item->buku }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->tangal_pinjam)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>{{ \Carbon\Carbon::parse($item->tangal_jatuhtempo)->translatedFormat('d F Y') }}
+                            </td>
+                            <td>
+                                {{ $item->tangal_dikembalikan ? \Carbon\Carbon::parse($item->tangal_dikembalikan)->translatedFormat('d F Y') : '-' }}
+                            </td>
+
+                            <td>
+                                <span>{{ $item->status }}</span>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 
@@ -148,8 +122,8 @@
             <div class="col-6"></div>
             <div class="col-6 text-end">
                 <p class="mb-1">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</p>
-                <p class="mb-5">Kepala Cabang BPJS Kesehatan</p>
-                <p class="fw-bold text-uppercase mb-1">Drs. H. Ahmad Yani, M.M</p>
+                <p class="mb-5">Ketua</p>
+                <p class="fw-bold text-uppercase mb-1"> Satya Putra Ilyas</p>
                 <p class="mb-0">NIP: 19720304 199601 1 003</p>
             </div>
         </div>

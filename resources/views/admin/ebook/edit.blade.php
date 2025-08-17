@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="penggarang" class="form-label">Penggarang</label>
+                                    <label for="penggarang" class="form-label">Pengarang</label>
                                     <input type="text" name="penggarang" class="form-control" id="penggarang"
                                         value="{{ old('penggarang', $ebooks->penggarang) }}" required>
                                 </div>
@@ -64,7 +64,8 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="cover" class="form-label">Cover Ebook</label>
-                                    <input type="file" name="cover" class="form-control" id="cover">
+                                    <input type="file" name="cover" class="form-control" id="cover"
+                                        accept=".jpg,.jpeg,.png">
                                     <div class="text-center mt-3">
                                         @if ($ebooks->cover)
                                             <img src="{{ asset('uploads/cover/' . $ebooks->cover) }}" alt="Cover Ebook"
@@ -76,6 +77,22 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="file_pdf" class="form-label">File PDF</label>
+                                    <input type="file" name="file_pdf" class="form-control" id="file_pdf"
+                                        accept=".pdf">
+                                    <div class="mt-2">
+                                        @if ($ebooks->file_pdf)
+                                            <a href="{{ asset('uploads/pdf/' . $ebooks->file_pdf) }}" target="_blank"
+                                                class="btn btn-sm btn-success">
+                                                Lihat PDF Lama
+                                            </a>
+                                        @else
+                                            <div class="text-muted">Tidak ada file PDF</div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Tombol -->
@@ -84,6 +101,7 @@
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </div>
+
 
                     </form>
                 </div>

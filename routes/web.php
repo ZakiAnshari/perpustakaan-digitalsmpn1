@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PustakawanController;
 use App\Http\Controllers\DashboardpinjamController;
+use App\Http\Controllers\PeminjamanController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
@@ -29,7 +30,11 @@ Route::middleware(['auth'])->group(function () {
     // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'index']);
     // DASHBOARD PINJAM
-    Route::get('/dashboardpinjam', [DashboardpinjamController::class, 'index']);
+    Route::get('/dashboardpinjam', [DashboardpinjamController::class, 'index'])->name('dashboardpinjam.index');
+    Route::get('/dashboardpinjam-show/{id}', [DashboardpinjamController::class, 'show'])->name('dashboardpinjam.show');
+    Route::get('/e-book', [DashboardpinjamController::class, 'pinjamebook'])->name('pinjamebook.index');
+    Route::get('/ebook/download/{id}', [DashboardpinjamController::class, 'download'])->name('ebook.download');
+    Route::post('/logout', [DashboardpinjamController::class, 'logout'])->name('logout');
     // DATA CATEGORY
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/category-add', [CategoryController::class, 'store'])->name('category.store');
@@ -59,34 +64,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ebook-destroy/{id}', [EbookController::class, 'destroy']);
     Route::get('/ebook-show/{id}', [EbookController::class, 'show'])->name('ebook.show');
     // DATA PEMINJAMAN
-    Route::get('/peminjaman', [PustakawanController::class, 'peminjaman']);
-    Route::get('/cetak', [PustakawanController::class, 'cetak']);
-
-
-
-    //SISWA YANG MINJAM
-    // Route::get('/buku', [PustakawanController::class, 'buku']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+    Route::post('/peminjaman-add', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+    Route::get('/peminjaman-edit/{id}', [PeminjamanController::class, 'edit']);
+    Route::post('/peminjaman-edit/{id}', [PeminjamanController::class, 'update']);
+    Route::get('/peminjaman-destroy/{id}', [PeminjamanController::class, 'destroy']);
+    Route::get('/cetak', [PeminjamanController::class, 'cetak']);
     // USER
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::post('/user-add', [UserController::class, 'store'])->name('user.store');

@@ -10,7 +10,7 @@
                         <div class="col-sm-7">
                             <div class="card-body">
                                 <h5 class="card-title text-primary">
-                                    Selamat Datang, Pustakawan, di Sistem Informasi Perpustakaan SMP N 1 Kubung 🎉
+                                    Selamat Datang {{ Auth::user()->role->name }}  di Sistem Informasi Perpustakaan SMP N 1 Kubung 🎉
                                 </h5>
                                 <p class="mb-4">
                                     Gunakan sistem ini untuk mengelola data buku, anggota, dan aktivitas perpustakaan secara
@@ -121,7 +121,7 @@
                                 <i class="bi bi-person-plus-fill text-primary" style="font-size: 3rem;"></i>
                                 <span class="badge bg-label-primary rounded-pill"
                                     style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                    5
+                                    {{ $peminjamyangminjamCount }}
                                 </span>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                 <i class="bi bi-box-arrow-in-left text-primary" style="font-size: 3rem;"></i>
                                 <span class="badge bg-label-primary rounded-pill"
                                     style="font-size: 1.5rem; padding: 0.5rem 1rem;">
-                                    3
+                                    {{ $peminjamDikembalikanCount }}
                                 </span>
                             </div>
                         </div>

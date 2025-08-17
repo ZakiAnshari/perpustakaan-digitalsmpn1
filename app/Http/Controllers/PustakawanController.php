@@ -115,15 +115,6 @@ class PustakawanController extends Controller
 
 
  
-    public function peminjaman()
-    {
-        return view('admin.peminjaman.index');
-    }
-    public function cetak()
-    {
-        return view('admin.cetak.index');
-    }
-
 
 
 

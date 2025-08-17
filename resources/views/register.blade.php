@@ -191,7 +191,7 @@
                                 <label class="form-label" for="password">Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
-                                        placeholder="Masukkan Password" />
+                                        placeholder="Password minimal 8 karakter" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                 <label class="form-label" for="password_confirmation">Konfirmasi Password</label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password_confirmation" class="form-control"
-                                        name="password_confirmation" placeholder="Masukkan Ulang Password" />
+                                        name="password_confirmation" placeholder="Password minimal 8 karakter" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>

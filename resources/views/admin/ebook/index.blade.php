@@ -99,7 +99,13 @@
                                                         <div class="mb-3">
                                                             <label for="cover" class="form-label">Cover Ebook</label>
                                                             <input type="file" name="cover" class="form-control"
-                                                                id="cover">
+                                                                id="cover" accept=".jpg,.jpeg,.png">
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="file_pdf" class="form-label">File PDF</label>
+                                                            <input type="file" name="file_pdf" class="form-control"
+                                                                id="file_pdf" accept=".pdf">
                                                         </div>
                                                     </div>
                                                 </div>

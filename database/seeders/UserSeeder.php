@@ -35,20 +35,20 @@ class UserSeeder extends Seeder
             'email' => 'smpn1kubung.com',
             'jenis_kelamin' => 'Laki-Laki',
             'email_verified_at' => now(),
-            'password' => Hash::make('123'),
+            'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ]);
 
         // Pustakawan 1
         User::create([
-            'name' => 'Muhammad Andi',
-            'username' => 'andi',
+            'name' => 'Pustakawan Perpus',
+            'username' => 'pustakawan',
             'contact' => '085501010101',
             'role_id' => 2,
             'email' => 'muhammadandi123.com',
             'jenis_kelamin' => 'Laki-Laki',
             'email_verified_at' => now(),
-            'password' => Hash::make('123'),
+            'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ]);
     }

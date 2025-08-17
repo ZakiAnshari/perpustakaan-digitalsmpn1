@@ -24,5 +24,8 @@ class Book extends Model
     ];
 
     // Relasi many-to-many ke kategori
-
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

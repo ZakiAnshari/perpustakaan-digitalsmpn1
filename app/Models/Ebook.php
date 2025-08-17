@@ -12,5 +12,6 @@ class Ebook extends Model
         'penerbit',
         'tahun_terbit',
         'cover',
+        'file_pdf'
     ];
 }

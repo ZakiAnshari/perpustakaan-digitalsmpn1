@@ -36,10 +36,11 @@ class EbookController extends Controller
         // Validasi data
         $validated = $request->validate([
             'judul_ebook'  => 'required|string|max:255',
-            'penggarang'   => 'required|string|max:100', // pastikan form juga pakai name="penggarang"
+            'penggarang'   => 'required|string|max:100',
             'penerbit'     => 'required|string|max:100',
             'tahun_terbit' => 'required|digits:4|integer',
             'cover'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'file_pdf'     => 'nullable|mimes:pdf|max:10240', // max 10MB
         ]);
 
         // Upload cover jika ada
@@ -49,12 +50,20 @@ class EbookController extends Controller
             $validated['cover'] = $coverName;
         }
 
+        // Upload PDF jika ada
+        if ($request->hasFile('file_pdf')) {
+            $pdfName = time() . '_' . $request->file('file_pdf')->getClientOriginalName();
+            $request->file('file_pdf')->move(public_path('uploads/pdf'), $pdfName);
+            $validated['file_pdf'] = $pdfName;
+        }
+
         // Simpan data ebook
         Ebook::create($validated);
 
         Alert::success('Success', 'Data ebook berhasil ditambahkan');
         return back();
     }
+
 
     public function edit($id)
     {
@@ -84,6 +93,7 @@ class EbookController extends Controller
             'penerbit'     => 'required|string|max:100',
             'tahun_terbit' => 'required|digits:4|integer',
             'cover'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'file_pdf'     => 'nullable|mimes:pdf|max:10240', // max 10MB
         ]);
 
         // Upload cover baru jika ada
@@ -96,6 +106,18 @@ class EbookController extends Controller
             $coverName = time() . '_' . $request->file('cover')->getClientOriginalName();
             $request->file('cover')->move(public_path('uploads/cover'), $coverName);
             $validated['cover'] = $coverName;
+        }
+
+        // Upload file PDF baru jika ada
+        if ($request->hasFile('file_pdf')) {
+            // Hapus pdf lama jika ada
+            if ($ebook->file_pdf && file_exists(public_path('uploads/pdf/' . $ebook->file_pdf))) {
+                unlink(public_path('uploads/pdf/' . $ebook->file_pdf));
+            }
+
+            $pdfName = time() . '_' . $request->file('file_pdf')->getClientOriginalName();
+            $request->file('file_pdf')->move(public_path('uploads/pdf'), $pdfName);
+            $validated['file_pdf'] = $pdfName;
         }
 
         // Update data ebook

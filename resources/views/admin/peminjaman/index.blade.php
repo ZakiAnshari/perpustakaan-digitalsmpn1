@@ -48,7 +48,7 @@
                                         <span>Tambah</span>
                                     </button>
                                     <button type="button" class="btn btn-outline-warning d-flex align-items-center"
-                                        onclick="window.location.href='/cetak'">
+                                        onclick="window.open('/cetak', '_blank')">
                                         <i class="bx bx-printer me-2 d-block"></i>
                                         <span>Cetak</span>
                                     </button>
@@ -68,87 +68,72 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        {{-- <form action="buku-add" method="POST" enctype="multipart/form-data">
+                                        <form action="peminjaman-add" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <!-- Kolom Kiri -->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="kode_buku" class="form-label">Kode Buku</label>
-                                                            <input type="text" name="kode_buku" class="form-control"
-                                                                id="kode_buku" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="category_id" class="form-label">Kategori</label>
-                                                            <select name="category_id" id="category_id" class="form-control"
-                                                                required>
-                                                                <option value="">-- Pilih Kategori --</option>
-                                                                @foreach ($categories as $category)
-                                                                    <option value="{{ $category->id }}">
-                                                                        {{ $category->nama_category }}</option>
+                                                            <label for="nama_anggota" class="form-label">Nama
+                                                                Anggota</label>
+                                                            <select name="nama_anggota" id="nama_anggota"
+                                                                class="form-control" required>
+                                                                <option value="">-- Pilih Anggota --</option>
+                                                                @foreach ($users as $user)
+                                                                    <option value="{{ $user->name }}">{{ $user->name }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="judul" class="form-label">Judul</label>
-                                                            <input type="text" name="judul" class="form-control"
-                                                                id="judul" required>
-                                                        </div>
+
+
 
                                                         <div class="mb-3">
-                                                            <label for="pengarang" class="form-label">Pengarang</label>
-                                                            <input type="text" name="pengarang" class="form-control"
-                                                                id="pengarang" required>
+                                                            <label for="buku" class="form-label">Judul Buku</label>
+                                                            <select name="buku" id="buku" class="form-control"
+                                                                required>
+                                                                <option value="">-- Pilih Buku --</option>
+                                                                @foreach ($bukus as $item)
+                                                                    <option value="{{ $item->judul }}">{{ $item->judul }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <label for="penerbit" class="form-label">Penerbit</label>
-                                                            <input type="text" name="penerbit" class="form-control"
-                                                                id="penerbit" required>
-                                                        </div>
 
                                                         <div class="mb-3">
-                                                            <label for="tahun_terbit" class="form-label">Tahun
-                                                                Terbit</label>
-                                                            <input type="number" name="tahun_terbit" class="form-control"
-                                                                id="tahun_terbit" required>
+                                                            <label for="tangal_pinjam" class="form-label">Tanggal
+                                                                Pinjam</label>
+                                                            <input type="date" name="tangal_pinjam" class="form-control"
+                                                                id="tangal_pinjam" required>
                                                         </div>
                                                     </div>
 
                                                     <!-- Kolom Kanan -->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="isbn" class="form-label">ISBN</label>
-                                                            <input type="text" name="isbn" class="form-control"
-                                                                id="isbn" required>
+                                                            <label for="tangal_jatuhtempo" class="form-label">Tanggal Jatuh
+                                                                Tempo</label>
+                                                            <input type="date" name="tangal_jatuhtempo"
+                                                                class="form-control" id="tangal_jatuhtempo" required>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <label for="jumlah_stok" class="form-label">Jumlah
-                                                                Stok</label>
-                                                            <input type="number" name="jumlah_stok" class="form-control"
-                                                                id="jumlah_stok" required>
-                                                        </div>
+
 
                                                         <div class="mb-3">
-                                                            <label for="lokasi_rak" class="form-label">Lokasi Rak</label>
-                                                            <input type="text" name="lokasi_rak" class="form-control"
-                                                                id="lokasi_rak" required>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="deskripsi" class="form-label">Deskripsi</label>
-                                                            <textarea name="deskripsi" class="form-control" id="deskripsi" rows="4"></textarea>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="cover" class="form-label">Cover Buku</label>
-                                                            <input type="file" name="cover" class="form-control"
-                                                                id="cover">
+                                                            <label for="status" class="form-label">Status</label>
+                                                            <select name="status" id="status" class="form-control"
+                                                                required>
+                                                                <option value="">-- Pilih Status --</option>
+                                                                <option value="Dipinjam">Dipinjam</option>
+                                                                <option value="Dikembalikan">Dikembalikan</option>
+                                                                <option value="Terlambat">Terlambat</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
+
 
 
                                             </div>
@@ -159,7 +144,7 @@
                                                     data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -179,71 +164,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Agus Pratama</td>
-                                        <td>Belajar Laravel 11</td>
-                                        <td>2023-07-01</td>
-                                        <td>2023-07-15</td>
-                                        <td>2023-07-14</td>
-                                        <td><span class="badge bg-success">Dikembalikan</span></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Siti Aminah</td>
-                                        <td>PHP untuk Pemula</td>
-                                        <td>2023-07-05</td>
-                                        <td>2023-07-19</td>
-                                        <td>-</td>
-                                        <td><span class="badge bg-warning">Dipinjam</span></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Rudi Hartono</td>
-                                        <td>Algoritma dan Struktur Data</td>
-                                        <td>2023-06-20</td>
-                                        <td>2023-07-04</td>
-                                        <td>2023-07-03</td>
-                                        <td><span class="badge bg-success">Dikembalikan</span></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Lina Marlina</td>
-                                        <td>Desain Web Modern</td>
-                                        <td>2023-07-10</td>
-                                        <td>2023-07-24</td>
-                                        <td>-</td>
-                                        <td><span class="badge bg-warning">Dipinjam</span></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Andi Wijaya</td>
-                                        <td>Basis Data MySQL</td>
-                                        <td>2023-06-15</td>
-                                        <td>2023-06-29</td>
-                                        <td>2023-06-28</td>
-                                        <td><span class="badge bg-success">Dikembalikan</span></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-primary">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
+                                    @php $no = 1; @endphp
+                                    @foreach ($peminjaman as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->nama_anggota }}</td>
+                                            <td>{{ $item->buku }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tangal_pinjam)->translatedFormat('d F Y') }}
+                                            </td>
+                                            <td>{{ \Carbon\Carbon::parse($item->tangal_jatuhtempo)->translatedFormat('d F Y') }}
+                                            </td>
+                                            <td>
+                                                {{ $item->tangal_dikembalikan ? \Carbon\Carbon::parse($item->tangal_dikembalikan)->translatedFormat('d F Y') : '-' }}
+                                            </td>
+
+                                            <td>
+                                                <span
+                                                    class="badge 
+                                                    @if ($item->status == 'Dipinjam') bg-warning
+                                                    @elseif($item->status == 'Dikembalikan') bg-success
+                                                    @else bg-secondary @endif">
+                                                    {{ $item->status }}
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                <a href="peminjaman-edit/{{ $item->id }}"
+                                                    class="btn btn-icon btn-outline-primary">
+                                                    <i class="bx bx-edit-alt"></i>
+                                                </a>
+
+                                                <!-- Tombol Hapus -->
+                                                <a href="javascript:void(0)"
+                                                    onclick="confirmDeletePeminjaman({{ $item->id }}, @js($item->nama_anggota))"
+                                                    style="display:inline;">
+                                                    <button class="btn btn-icon btn-outline-danger">
+                                                        <i class="bx bx-trash"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
 
@@ -251,10 +213,10 @@
 
 
                             <!-- Pagination -->
-                            {{-- <div class="d-flex justify-content-end mt-3">
-                                {{ $users->appends(request()->input())->links('pagination::bootstrap-4') }}
+                            <div class="d-flex justify-content-end mt-3">
+                                {{ $peminjaman->appends(request()->input())->links('pagination::bootstrap-4') }}
 
-                            </div> --}}
+                            </div>
 
 
                         </div>
@@ -264,5 +226,25 @@
 
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDeletePeminjaman(id, nama) {
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: `"${nama}" akan dihapus secara permanen!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/peminjaman-destroy/${id}`;
+                }
+            });
+        }
+    </script>
+    @include('sweetalert::alert')
     @include('sweetalert::alert')
 @endsection

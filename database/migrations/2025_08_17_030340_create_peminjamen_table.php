@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ebooks', function (Blueprint $table) {
+        Schema::create('peminjamen', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_ebook');
-            $table->string('penggarang');
-            $table->string('penerbit');
-            $table->string('tahun_terbit');
-            $table->text('cover')->nullable();
-            $table->string('file_pdf'); // tambahkan kolom untuk path file PDF
+            $table->string('nama_anggota');
+            $table->string('buku');
+            $table->string('tangal_pinjam');
+            $table->string('tangal_jatuhtempo');
+            $table->string('tangal_dikembalikan')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ebooks');
+        Schema::dropIfExists('peminjamen');
     }
 };

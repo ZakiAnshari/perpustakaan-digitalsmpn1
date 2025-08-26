@@ -71,12 +71,12 @@
             </li>
 
             {{-- E-BOOK --}}
-            <li class="menu-item {{ Request::is('ebook*') ? 'active' : '' }}">
+            {{-- <li class="menu-item {{ Request::is('ebook*') ? 'active' : '' }}">
                 <a href="/ebook" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-book-open"></i>
                     <div data-i18n="Data E-Book">Data E-Book</div>
                 </a>
-            </li>
+            </li> --}}
         @endif
 
         {{-- PEMINJAMAN --}}

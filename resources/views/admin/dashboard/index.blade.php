@@ -38,7 +38,7 @@
             </div>
             @if (auth()->user()->role_id == 1)
                 {{-- TOTAL BUKU --}}
-                <div class="col-3 mb-4">
+                <div class="col-4 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center">
@@ -56,7 +56,7 @@
                 </div>
 
                 {{-- TOTAL PUSTAKAWAN --}}
-                <div class="col-3 mb-4">
+                <div class="col-4 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center">
@@ -74,7 +74,7 @@
                 </div>
 
                 {{-- TOTAL ANGGOTA --}}
-                <div class="col-3 mb-4">
+                <div class="col-4 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center">
@@ -92,7 +92,7 @@
                 </div>
 
                 {{-- TOTAL E-BOOK --}}
-                <div class="col-3 mb-4">
+                {{-- <div class="col-3 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center">
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             @endif
 
 

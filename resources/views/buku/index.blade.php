@@ -67,7 +67,7 @@
                     <div class="navbar-nav ms-auto d-flex align-items-center gap-3">
                         <div class="nav-item d-flex align-items-center gap-2">
                             <a href="/dashboardpinjam" class="btn btn-outline-primary btn-sm active">Buku</a>
-                            <a href="/e-book" class="btn btn-outline-primary btn-sm">E-Book</a>
+                            {{-- <a href="/e-book" class="btn btn-outline-primary btn-sm">E-Book</a> --}}
                         </div>
 
                         <!-- User -->
@@ -164,12 +164,96 @@
                                                             <a href="{{ url('dashboardpinjam-show/' . $item->id) }}"
                                                                 class="btn btn-outline-primary w-100">Lihat</a>
                                                         </div>
+
                                                         <div class="col-6">
-                                                            <button type="button"
-                                                                onclick="alertPinjam('{{ $item->judul }}')"
-                                                                class="btn btn-outline-primary w-100">
-                                                                Pinjam
-                                                            </button>
+                                                            <div class="col-12">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-primary w-100"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#pinjamModal{{ $item->id }}">
+                                                                    Pinjam
+                                                                </button>
+                                                            </div>
+
+                                                            <!-- Modal Pinjam -->
+                                                            <div class="modal fade"
+                                                                id="pinjamModal{{ $item->id }}" tabindex="-1"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Form Peminjaman
+                                                                                Buku</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"></button>
+                                                                        </div>
+
+                                                                        <form action="peminjaman-add" method="POST"
+                                                                            enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <div class="modal-body">
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Nama
+                                                                                        Siswa</label>
+                                                                                    <input type="text"
+                                                                                        name="nama_anggota"
+                                                                                        class="form-control"
+                                                                                        value="{{ auth()->user()->name }}"
+                                                                                        readonly>
+                                                                                </div>
+
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Judul
+                                                                                        Buku</label>
+                                                                                    <input type="text"
+                                                                                        name="buku"
+                                                                                        class="form-control"
+                                                                                        value="{{ $item->judul }}"
+                                                                                        readonly>
+                                                                                </div>
+
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Tanggal
+                                                                                        Pinjam</label>
+                                                                                    <input type="date"
+                                                                                        id="tanggal_pinjam"
+                                                                                        name="tangal_pinjam"
+                                                                                        class="form-control"
+                                                                                        value="{{ now()->toDateString() }}">
+                                                                                </div>
+
+                                                                                <div class="mb-3">
+                                                                                    <label class="form-label">Tanggal
+                                                                                        Jatuh Tempo</label>
+                                                                                    <input type="date"
+                                                                                        id="tanggal_jatuh"
+                                                                                        name="tangal_jatuhtempo"
+                                                                                        class="form-control"
+                                                                                        value="{{ now()->addDays(7)->toDateString() }}" readonly>
+                                                                                </div>
+
+                                                                                <input type="hidden" name="status"
+                                                                                    value="dipinjam">
+                                                                            </div>
+
+
+
+
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Batal</button>
+                                                                                <button type="submit"
+                                                                                    class="btn btn-primary">Pinjam</button>
+                                                                            </div>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
 
                                                     </div>
@@ -216,6 +300,27 @@
             }
         }
     </script> --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tglPinjam = document.getElementById("tanggal_pinjam");
+            const tglJatuh = document.getElementById("tanggal_jatuh");
+
+            tglPinjam.addEventListener("change", function() {
+                let pinjamDate = new Date(this.value);
+                if (!isNaN(pinjamDate.getTime())) {
+                    // Tambahkan 7 hari
+                    pinjamDate.setDate(pinjamDate.getDate() + 7);
+
+                    // Format ke YYYY-MM-DD
+                    let year = pinjamDate.getFullYear();
+                    let month = String(pinjamDate.getMonth() + 1).padStart(2, '0');
+                    let day = String(pinjamDate.getDate()).padStart(2, '0');
+
+                    tglJatuh.value = `${year}-${month}-${day}`;
+                }
+            });
+        });
+    </script>
     <script>
         function alertPinjam(judul) {
             Swal.fire({

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tangal_pinjam');
             $table->string('tangal_jatuhtempo');
             $table->string('tangal_dikembalikan')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -59,19 +59,43 @@ class PeminjamanController extends Controller
     {
         // Validasi data sesuai field model
         $validated = $request->validate([
-            'nama_anggota'        => 'required|string|max:255',
-            'buku'                => 'required|string|max:255',
-            'tangal_pinjam'       => 'required|date',
-            'tangal_jatuhtempo'   => 'required|date',
-            'status'              => 'required|string|max:50',
+            'nama_anggota'      => 'required|string|max:255',
+            'buku'              => 'required|string|max:255',
+            'tangal_pinjam'     => 'required|date',
+            'tangal_jatuhtempo' => 'required|date',
+            'status'            => 'required|string|max:50',
         ]);
 
-        // Simpan data ke tabel peminjaman
+        // 🔒 Hitung jumlah pinjaman aktif oleh anggota ini
+        $jumlahPinjamanAktif = Peminjaman::where('nama_anggota', $validated['nama_anggota'])
+            ->where('status', 'dipinjam')
+            ->count();
+
+        if ($jumlahPinjamanAktif >= 3) {
+            Alert::error('Gagal', 'Kamu sudah meminjam 3 buku, kembalikan dulu sebelum pinjam lagi!');
+            return back();
+        }
+
+        // 🔒 Cek apakah anggota sudah meminjam buku yang sama
+        $sudahPinjamBukuSama = Peminjaman::where('nama_anggota', $validated['nama_anggota'])
+            ->where('buku', $validated['buku'])
+            ->where('status', 'dipinjam')
+            ->exists();
+
+        if ($sudahPinjamBukuSama) {
+            Alert::error('Gagal', 'Kamu sudah meminjam buku "' . $validated['buku'] . '" dan belum mengembalikannya!');
+            return back();
+        }
+
+        // ✅ Simpan data ke tabel peminjaman
         Peminjaman::create($validated);
 
         Alert::success('Success', 'Data peminjaman berhasil ditambahkan');
         return back();
     }
+
+
+
 
 
 
@@ -106,6 +130,6 @@ class PeminjamanController extends Controller
     public function cetak()
     {
         $peminjaman = Peminjaman::all();
-        return view('admin.cetak.index',compact('peminjaman'));
+        return view('admin.cetak.index', compact('peminjaman'));
     }
 }

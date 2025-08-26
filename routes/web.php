@@ -7,9 +7,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PustakawanController;
 use App\Http\Controllers\DashboardpinjamController;
-use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PeminjamansiswaController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
@@ -21,6 +22,8 @@ Route::middleware('guest')->group(function () {
     //Register
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerprocess'])->name('register-store');
+    //pinjam siswa
+    Route::post('/pinjam/{id}', [PeminjamansiswaController::class, 'store'])->name('pinjam.store');
 });
 
 //ADMIN

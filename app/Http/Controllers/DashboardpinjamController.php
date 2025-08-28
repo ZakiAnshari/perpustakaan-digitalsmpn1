@@ -12,20 +12,25 @@ class DashboardpinjamController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
+        // Ambil input pencarian & kategori
+        $search   = $request->input('q');
+        $category = $request->input('category'); // ambil langsung string kategori
 
-        // Ambil input pencarian
-        $search = $request->input('q');
-
-        // Query buku dengan filter jika ada pencarian
-        $bukus = Book::with('category')
+        $bukus = Book::query()
             ->when($search, function ($query, $search) {
-                return $query->where('judul', 'like', "%{$search}%");
+                $query->where('judul', 'like', "%{$search}%");
+            })
+            ->when($category, function ($query, $category) {
+                $query->where('category', $category);
             })
             ->get();
 
-        return view('buku.index', compact('categories', 'bukus', 'search'));
+        // ambil distinct kategori dari tabel books untuk dropdown
+        $categories = Book::select('category')->distinct()->get();
+
+        return view('buku.index', compact('categories', 'bukus', 'search', 'category'));
     }
+
 
 
     public function show($id)

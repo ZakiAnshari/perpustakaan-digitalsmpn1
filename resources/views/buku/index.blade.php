@@ -128,16 +128,19 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <select class="form-select" name="category_id">
-                                    <option selected disabled>Pilih Kategori</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ isset($buku) && $buku->category_id == $category->id ? 'selected' : '' }}>
-                                            {{ $category->nama_category }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <form method="GET" action="{{ route('dashboardpinjam.index') }}">
+                                    <select class="form-select" name="category" onchange="this.form.submit()">
+                                        <option value="">Pilih Kategori</option>
+                                        @foreach ($categories as $cat)
+                                            <option value="{{ $cat->category }}"
+                                                {{ request('category') == $cat->category ? 'selected' : '' }}>
+                                                {{ $cat->category }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </form>
                             </div>
+
 
                         </div>
 
@@ -230,7 +233,8 @@
                                                                                         id="tanggal_jatuh"
                                                                                         name="tangal_jatuhtempo"
                                                                                         class="form-control"
-                                                                                        value="{{ now()->addDays(7)->toDateString() }}" readonly>
+                                                                                        value="{{ now()->addDays(7)->toDateString() }}"
+                                                                                        readonly>
                                                                                 </div>
 
                                                                                 <input type="hidden" name="status"

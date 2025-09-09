@@ -327,7 +327,7 @@
                                 {{-- MODAL PEMINJAMAN BUKU --}}
                                 <div class="modal fade" id="modalKartu{{ $item->id }}" tabindex="-1"
                                     aria-labelledby="modalKartuLabel{{ $item->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Kartu Peminjaman Buku</h5>
@@ -351,23 +351,28 @@
                                                             <tr>
                                                                 <th>Nama
                                                                     Peminjam</th>
+
                                                                 <th>Tanggal
                                                                     Pinjam</th>
                                                                 <th>Tanggal
                                                                     Kembali</th>
+                                                                <th>Paraf Petugas</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($peminjaman->where('buku', $item->buku)->whereNotNull('tangal_dikembalikan') as $riwayat)
                                                                 <tr>
                                                                     <td>
-                                                                        {{ $riwayat->nama_anggota }}</td>
+                                                                        {{ $riwayat->nama_anggota }}
+                                                                    </td>
+
                                                                     <td>
-                                                                        {{ \Carbon\Carbon::parse($riwayat->tangal_pinjam)->format('d/m/Y') }}
+                                                                        {{ \Carbon\Carbon::parse($riwayat->tangal_pinjam)->translatedFormat('d F Y') }}
                                                                     </td>
                                                                     <td>
-                                                                        {{ \Carbon\Carbon::parse($riwayat->tangal_dikembalikan)->format('d/m/Y') }}
+                                                                        {{ \Carbon\Carbon::parse($riwayat->tangal_dikembalikan)->translatedFormat('d F Y') }}
                                                                     </td>
+
                                                                 </tr>
                                                             @endforeach
 
@@ -463,7 +468,7 @@
 
                                             <!-- Tambahkan footer dengan tombol -->
                                             <div class="modal-footer">
-                                               
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Tutup</button>

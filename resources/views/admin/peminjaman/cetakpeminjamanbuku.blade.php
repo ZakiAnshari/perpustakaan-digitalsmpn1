@@ -69,14 +69,20 @@
                     <th>Nama Peminjam</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Kembali</th>
+                    <th>Paraf Petugas</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($peminjaman as $riwayat)
                     <tr>
                         <td>{{ $riwayat->nama_anggota }}</td>
-                        <td>{{ \Carbon\Carbon::parse($riwayat->tangal_pinjam)->format('d/m/Y') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($riwayat->tangal_dikembalikan)->format('d/m/Y') }}</td>
+                        <td>
+                            {{ \Carbon\Carbon::parse($riwayat->tangal_pinjam)->translatedFormat('d F Y') }}
+                        </td>
+                        <td>
+                            {{ \Carbon\Carbon::parse($riwayat->tangal_dikembalikan)->translatedFormat('d F Y') }}
+                        </td>
+                        <td></td>
                     </tr>
                 @endforeach
 

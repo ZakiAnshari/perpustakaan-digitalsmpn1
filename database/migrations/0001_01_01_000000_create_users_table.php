@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('kelas')->nullable();
             $table->string('nisn')->nullable();
-            
             $table->rememberToken();
             $table->timestamps();
         });

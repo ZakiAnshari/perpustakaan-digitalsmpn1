@@ -179,6 +179,7 @@
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->pengarang }}</td>
                                             <td>
+                                                
                                                 <!-- Tombol Lihat -->
                                                 <a href="buku-show/{{ $item->id }}"
                                                     class="btn btn-icon btn-outline-info" title="Lihat Data">

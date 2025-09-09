@@ -13,7 +13,7 @@ class PeminjamanController extends Controller
 {
     public function index(Request $request)
     {
-        // Mulai query dari model Peminjaman (ganti sesuai nama modelmu)
+        // Mulai query dari model Peminjaman
         $query = Peminjaman::query();
 
         // Jika ada pencarian
@@ -24,12 +24,11 @@ class PeminjamanController extends Controller
                 ->orWhere('tanggal_pinjam', 'like', "%{$search}%");
         }
 
-        // Gunakan paginate agar bisa pakai appends
-        $peminjaman = $query->paginate(10)->appends($request->all());
+        // Urutkan terbaru duluan
+        $peminjaman = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
 
-        // Kalau ada data tambahan seperti user atau ebook, bisa ikut diambil
         $ebooks = Ebook::all();
-        $users = User::where('role_id', 3)->get(); // hanya ambil user dengan role_id = 3
+        $users = User::where('role_id', 3)->get();
         $bukus = Book::all();
 
         return view('admin.peminjaman.index', compact(
@@ -131,5 +130,19 @@ class PeminjamanController extends Controller
     {
         $peminjaman = Peminjaman::all();
         return view('admin.cetak.index', compact('peminjaman'));
+    }
+
+    public function cetakPeminjaman($id)
+    {
+        $item = Peminjaman::findOrFail($id);
+        $peminjaman = Peminjaman::where('buku', $item->buku)->whereNotNull('tangal_dikembalikan')->get();
+
+        return view('admin.peminjaman.cetakpeminjamanbuku', compact('item', 'peminjaman'));
+    }
+
+    public function cetakDenda($id)
+    {
+        $item = Peminjaman::findOrFail($id);
+        return view('admin.peminjaman.cetakdenda', compact('item'));
     }
 }

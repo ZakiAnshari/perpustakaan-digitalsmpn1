@@ -73,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/peminjaman-edit/{id}', [PeminjamanController::class, 'update']);
     Route::get('/peminjaman-destroy/{id}', [PeminjamanController::class, 'destroy']);
     Route::get('/cetak', [PeminjamanController::class, 'cetak']);
+    Route::get('/cetak-peminjaman/{id}', [PeminjamanController::class, 'cetakPeminjaman'])->name('cetak.peminjaman');
+    Route::get('/cetak-denda/{id}', [PeminjamanController::class, 'cetakDenda'])->name('cetak.denda');
     // USER
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::post('/user-add', [UserController::class, 'store'])->name('user.store');

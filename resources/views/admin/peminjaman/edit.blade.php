@@ -55,7 +55,6 @@
                                     <select name="status" id="status" class="form-control" required>
                                         <option value="dipinjam">Dipinjam</option>
                                         <option value="dikembalikan">Dikembalikan</option>
-                                        <option value="terlambat">Terlambat</option>
                                     </select>
 
                                 </div>

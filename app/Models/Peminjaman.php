@@ -14,4 +14,17 @@ class Peminjaman extends Model
         'tangal_dikembalikan',
         'status',
     ];
+
+
+    // Relasi ke User (anggota)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // Relasi ke Book (buku)
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
 }

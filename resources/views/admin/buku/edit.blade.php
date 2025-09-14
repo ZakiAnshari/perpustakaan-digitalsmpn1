@@ -36,9 +36,9 @@
                             <!-- Kolom Kiri -->
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="book_code" class="form-label">Kode Buku</label>
-                                    <input type="text" name="book_code" class="form-control" id="book_code"
-                                        value="{{ $bukus->book_code }}">
+                                    <label for="kode_buku" class="form-label">Kode Buku</label>
+                                    <input type="text" name="kode_buku" class="form-control" id="kode_buku"
+                                        value="{{ $bukus->kode_buku }}">
                                 </div>
 
                                 <div class="mb-3">

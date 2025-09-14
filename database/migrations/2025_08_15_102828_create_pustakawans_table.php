@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pustakawans', function (Blueprint $table) {
-            $table->id(); // ID auto increment
-            $table->string('name'); // Nama pustakawan
-            $table->string('email')->unique(); // Email unik
-            $table->string('phone')->nullable(); // Telepon (opsional)
-            $table->string('nip')->nullable(); // Status aktif/nonaktif // Password opsional, jika login diperlukan
-            $table->timestamps(); // created_at & updated_at
+            $table->id(); 
+            $table->string('name',50); 
+            $table->string('email',100)->unique(); 
+            $table->string('phone',15)->nullable();
+            $table->string('nip',50)->nullable(); 
+            $table->timestamps();
         });
     }
 

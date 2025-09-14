@@ -27,13 +27,12 @@ class PeminjamanController extends Controller
         // Urutkan terbaru duluan
         $peminjaman = $query->orderBy('created_at', 'desc')->paginate(10)->appends($request->all());
 
-        $ebooks = Ebook::all();
+
         $users = User::where('role_id', 3)->get();
         $bukus = Book::all();
 
         return view('admin.peminjaman.index', compact(
             'peminjaman',
-            'ebooks',
             'users',
             'bukus'
         ));

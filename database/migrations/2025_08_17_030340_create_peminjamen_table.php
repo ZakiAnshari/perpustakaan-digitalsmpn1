@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('peminjamen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_anggota');
-            $table->string('buku');
-            $table->string('tangal_pinjam');
-            $table->string('tangal_jatuhtempo');
-            $table->string('tangal_dikembalikan')->nullable();
-            $table->string('status')->nullable();
+            $table->string('nama_anggota',100);
+            $table->string('buku',100);
+            $table->date('tangal_pinjam');
+            $table->date('tangal_jatuhtempo');
+            $table->date('tangal_dikembalikan')->nullable();
+            $table->string('status',20)->nullable();
             $table->timestamps();
         });
     }

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('book_code', 50);
+            $table->string('kode_buku', 50);
             $table->string('category', 50);
-            $table->string('judul', 255);
-            $table->string('status')->default('in stock');
+            $table->string('judul', 100);
+            $table->string('status',15)->default('in stock');
             $table->string('pengarang', 100)->nullable();
             $table->string('penerbit', 100)->nullable();
             $table->year('tahun_terbit')->nullable();

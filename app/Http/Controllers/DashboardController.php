@@ -16,7 +16,6 @@ class DashboardController extends Controller
         $bookCount = Book::count();
         $pustakawanCount = Pustakawan::count();
         $userCount = User::count();
-        $ebookCount = Ebook::count();
         $peminjamyangminjamCount = Peminjaman::where('status', 'dipinjam')->count();
         $peminjamDikembalikanCount = Peminjaman::where('status', 'dikembalikan')->count();
 
@@ -24,7 +23,6 @@ class DashboardController extends Controller
             'bookCount',
             'pustakawanCount',
             'userCount',
-            'ebookCount',
             'peminjamyangminjamCount',
             'peminjamDikembalikanCount'
         ));

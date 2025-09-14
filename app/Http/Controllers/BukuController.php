@@ -34,7 +34,7 @@ class BukuController extends Controller
     {
         // Validasi data
         $validated = $request->validate([
-            'book_code'    => 'required|string|max:50|unique:books,book_code',
+            'kode_buku'    => 'required|string|max:50|unique:books,kode_buku',
             'category'     => 'nullable|string|max:255', // sesuai model
             'judul'        => 'required|string|max:255',
             'status'       => 'nullable|string|max:50',
@@ -87,7 +87,7 @@ class BukuController extends Controller
 
         // Validasi data yang masuk
         $validated = $request->validate([
-            'book_code'    => 'required|string|max:50|unique:books,book_code,' . $id,
+            'kode_buku'    => 'required|string|max:50|unique:books,kode_buku,' . $id,
             'category'     => 'nullable|string|max:255',
             'judul'        => 'required|string|max:255',
             'status'       => 'nullable|string|max:50',

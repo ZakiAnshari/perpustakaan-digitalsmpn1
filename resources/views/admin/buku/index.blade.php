@@ -69,9 +69,9 @@
                                                     <!-- Kolom Kiri -->
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
-                                                            <label for="book_code" class="form-label">Kode Buku</label>
-                                                            <input type="text" name="book_code" class="form-control"
-                                                                id="book_code" required>
+                                                            <label for="kode_buku" class="form-label">Kode Buku</label>
+                                                            <input type="text" name="kode_buku" class="form-control"
+                                                                id="kode_buku" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="category" class="form-label">Kategori</label>
@@ -174,7 +174,7 @@
                                     @forelse ($bukus  as $index => $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->book_code }}</td>
+                                            <td>{{ $item->kode_buku }}</td>
                                             <td>{{ $item->judul }}</td>
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->pengarang }}</td>

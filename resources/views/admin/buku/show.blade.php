@@ -68,7 +68,7 @@
                                     <div class="row border-bottom pb-3 mb-3">
                                         <div class="col-md-6">
                                             <p class="mb-1 text-muted">Kode Buku</p>
-                                            <h6 class="mb-0">{{ $bukus->book_code }}</h6>
+                                            <h6 class="mb-0">{{ $bukus->kode_buku }}</h6>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="mb-1 text-muted">Pengarang</p>
